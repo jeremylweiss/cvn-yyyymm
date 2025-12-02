@@ -22,8 +22,8 @@ cpcTempURL <- "https://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/monthlyupdate/m
 prism::prism_set_dl_dir("./outlook/prism-tmp", create = TRUE)
 
 # For AVA-level statistics
-azClip <- sf::st_read("./outlook/spatial-data/tl-2019-us-state-az-bndbox.shp")
-azLatLon <- read.csv(file = "./outlook/spatial-data/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
+azClip <- sf::st_read("./outlook/tl-2019-us-state-az-bndbox.shp")
+azLatLon <- read.csv(file = "./outlook/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
 azLon <- unique(azLatLon$x_center)
 azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 
@@ -138,11 +138,11 @@ for(climVar in c("prcp", "temp")) {
   
   if(climVar == "prcp") {
     download.file(url = cpcPrcpURL, destfile = tf)
-    unzip(zipfile = tf, exdir = "./outlook/spatial-data/")
+    unzip(zipfile = tf, exdir = "./outlook/")
     unlink(tf)
   } else {
     download.file(url = cpcTempURL, destfile = tf)
-    unzip(zipfile = tf, exdir = "./outlook/spatial-data/")
+    unzip(zipfile = tf, exdir = "./outlook/")
     unlink(tf)
   }
 }
@@ -234,7 +234,7 @@ tminDepartureNormal <- tminMonth - tminNormal
 for (ava in avas) {
   # Load latitude and longitude values for the AVA that correspond to gridcell centers of the 4-km PRISM grid mesh
   avaLatLon <- 
-    read.csv(paste0("./outlook/spatial-data/prism-mesh-gcsna1983-", ava, ".csv"))
+    read.csv(paste0("./spatial-data/prism-mesh-gcsna1983-", ava, ".csv"))
   
   for (cv in climVars) {
     print(paste0("Starting summaries for: ", ava, " and ", cv))

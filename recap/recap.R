@@ -19,8 +19,8 @@ library(stars)
 prism::prism_set_dl_dir("./recap/prism-tmp", create = TRUE)
 
 # For AVA-level statistics
-azClip <- sf::st_read("./recap/spatial-data/tl-2019-us-state-az-bndbox.shp")
-azLatLon <- read.csv(file = "./recap/spatial-data/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
+azClip <- sf::st_read("./spatial-data/tl-2019-us-state-az-bndbox.shp")
+azLatLon <- read.csv(file = "./spatial-data/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
 azLon <- unique(azLatLon$x_center)
 azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 
@@ -224,7 +224,7 @@ pptPercentNormalShp <-
 pptPercentNormalShp <- pptPercentNormalShp %>%
   sf::st_as_sf(as_points = FALSE, merge = TRUE)
 
-sf::st_write(pptPercentNormalShp, "./recap/spatial-data/pptPercentNormal.shp")
+sf::st_write(pptPercentNormalShp, "./recap/pptPercentNormal.shp")
 
 tmeanDepartureNormalShp <- 
   sf::st_crop(stars::st_as_stars(tmeanDepartureNormal), boundingBox)
@@ -232,7 +232,7 @@ tmeanDepartureNormalShp <-
 tmeanDepartureNormalShp <- tmeanDepartureNormalShp %>%
   sf::st_as_sf(as_points = FALSE, merge = TRUE)
 
-sf::st_write(tmeanDepartureNormalShp, "./recap/spatial-data/tmeanDepartureNormal.shp")
+sf::st_write(tmeanDepartureNormalShp, "./recap/tmeanDepartureNormal.shp")
 
 
 # AVA STATISTICS --------------------
@@ -241,7 +241,7 @@ sf::st_write(tmeanDepartureNormalShp, "./recap/spatial-data/tmeanDepartureNormal
 for (ava in avas) {
   # Load latitude and longitude values for the AVA that correspond to gridcell centers of the 4-km PRISM grid mesh
   avaLatLon <- 
-    read.csv(paste0("./recap/spatial-data/prism-mesh-gcsna1983-", ava, ".csv"))
+    read.csv(paste0("./spatial-data/prism-mesh-gcsna1983-", ava, ".csv"))
   
   for (cv in climVars) {
     print(paste0("Starting summaries for: ", ava, " and ", cv))

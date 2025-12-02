@@ -18,45 +18,45 @@ library(lubridate)
 #| label: define-variables
 #| message: false
 
-currentMonth <- 12
-currentYear <- 2025
+# currentMonth <- 12
+# currentYear <- 2025
 ```
 
 ```{r}
 #| label: set-text-variables
 #| message: false
 
-avaMonthlyNormalsPrecipitation <- 
-  list(
-    "Respective January normals are 1.24, 1.45, and 1.07 inches", # January
-    "Respective February normals are 1.12, 1.43, and 0.93 inches",
-    "Respective March normals are 0.97, 1.31, and 0.76 inches",
-    "Respective April normals are 0.38, 0.55, and 0.25 inches",
-    "Respective May normals are 0.22, 0.44, and 0.29 inches",
-    "Respective June normals are 0.55, 0.18, and 0.42 inches",
-    "Respective July normals are 4.06, 1.75, and 2.67 inches",
-    "Respective August normals are 3.95, 2.40, and 2.80 inches",
-    "Respective September normals are 1.95, 1.53, and 1.40 inches",
-    "Respective October normals are 0.95, 1.05, and 0.76 inches",
-    "Respective November normals are 0.84, 0.83, and 0.73 inches",
-    "Respective December normals are 1.40, 1.37, and 1.08 inches" # December
-  )
+# avaMonthlyNormalsPrecipitation <- 
+#   list(
+#     "Respective January normals are 1.24, 1.45, and 1.07 inches", # January
+#     "Respective February normals are 1.12, 1.43, and 0.93 inches",
+#     "Respective March normals are 0.97, 1.31, and 0.76 inches",
+#     "Respective April normals are 0.38, 0.55, and 0.25 inches",
+#     "Respective May normals are 0.22, 0.44, and 0.29 inches",
+#     "Respective June normals are 0.55, 0.18, and 0.42 inches",
+#     "Respective July normals are 4.06, 1.75, and 2.67 inches",
+#     "Respective August normals are 3.95, 2.40, and 2.80 inches",
+#     "Respective September normals are 1.95, 1.53, and 1.40 inches",
+#     "Respective October normals are 0.95, 1.05, and 0.76 inches",
+#     "Respective November normals are 0.84, 0.83, and 0.73 inches",
+#     "Respective December normals are 1.40, 1.37, and 1.08 inches" # December
+#   )
 
-avaMonthlyNormalsTemperature <- 
-  list(
-    "Respective January normals are 58.7 and 31.2 °F, 58.1 and 30.6 °F, and 59.6 and 30.2 °F", # January
-    "Respective February normals are 61.2 and 33.2 °F, 61.6 and 32.9 °F, and 63.1 and 32.7 °F",
-    "Respective March normals are 67.1 and 36.9 °F, 68.0 and 37.6 °F, and 69.4 and 37.1 °F",
-    "Respective April normals are 73.5 and 41.9 °F, 75.5 and 42.6 °F, and 76.7 and 42.0 °F",
-    "Respective May normals are 81.7 and 49.6 °F, 84.5 and 50.0 °F, and 84.8 and 48.9 °F",
-    "Respective June normals are 90.6 and 59.0 °F, 95.4 and 58.4 °F, and 94.5 and 59.1 °F",
-    "Respective July normals are 88.5 and 62.8 °F, 98.1 and 66.0 °F, and 93.6 and 64.9 °F",
-    "Respective August normals are 86.3 and 61.7 °F, 95.7 and 65.2 °F, and 91.2 and 63.8 °F",
-    "Respective September normals are 83.9 and 57.0 °F, 90.4 and 58.4 °F, and 87.8 and 58.3 °F",
-    "Respective October normals are 77.3 and 47.5 °F, 80.2 and 47.0 °F, and 79.9 and 46.8 °F",
-    "Respective November normals are 67.2 and 38.2 °F, 67.5 and 36.6 °F, and 68.6 and 36.7 °F",
-    "Respective December normals are 58.3 and 31.5 °F, 57.2 and 30.0 °F, and 59.0 and 30.2 °F" # December
-  )
+# avaMonthlyNormalsTemperature <- 
+#   list(
+#     "Respective January normals are 58.7 and 31.2 °F, 58.1 and 30.6 °F, and 59.6 and 30.2 °F", # January
+#     "Respective February normals are 61.2 and 33.2 °F, 61.6 and 32.9 °F, and 63.1 and 32.7 °F",
+#     "Respective March normals are 67.1 and 36.9 °F, 68.0 and 37.6 °F, and 69.4 and 37.1 °F",
+#     "Respective April normals are 73.5 and 41.9 °F, 75.5 and 42.6 °F, and 76.7 and 42.0 °F",
+#     "Respective May normals are 81.7 and 49.6 °F, 84.5 and 50.0 °F, and 84.8 and 48.9 °F",
+#     "Respective June normals are 90.6 and 59.0 °F, 95.4 and 58.4 °F, and 94.5 and 59.1 °F",
+#     "Respective July normals are 88.5 and 62.8 °F, 98.1 and 66.0 °F, and 93.6 and 64.9 °F",
+#     "Respective August normals are 86.3 and 61.7 °F, 95.7 and 65.2 °F, and 91.2 and 63.8 °F",
+#     "Respective September normals are 83.9 and 57.0 °F, 90.4 and 58.4 °F, and 87.8 and 58.3 °F",
+#     "Respective October normals are 77.3 and 47.5 °F, 80.2 and 47.0 °F, and 79.9 and 46.8 °F",
+#     "Respective November normals are 67.2 and 38.2 °F, 67.5 and 36.6 °F, and 68.6 and 36.7 °F",
+#     "Respective December normals are 58.3 and 31.5 °F, 57.2 and 30.0 °F, and 59.0 and 30.2 °F" # December
+#   )
 
 currentMonthName <- lubridate::month(currentMonth, label = TRUE, abbr = FALSE)
 
