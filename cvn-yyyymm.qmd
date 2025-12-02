@@ -158,34 +158,6 @@ recapMonthPreviousYearURL <-
 #| message: false
 
 
-# For 'Outlook' section -----
-
-azmetStartDateCurrentMonthPreviousYear <- 
-  paste(currentMonthPreviousYear, currentMonth, "01", sep = "-")
-
-azmetEndDateCurrentMonthPreviousYear <- 
-  paste(
-    currentMonthPreviousYear, 
-    currentMonth, 
-    lubridate::days_in_month(lubridate::ym(paste(currentYear, currentMonth, sep = "-"))),
-    sep = "-"
-  )
-
-bonCurrentMonthPreviousYear <- 
-  azmetr::az_daily(
-    "az09", 
-    start_date = azmetStartDateCurrentMonthPreviousYear, 
-    end_date = azmetEndDateCurrentMonthPreviousYear
-  )
-
-wibCurrentMonthPreviousYear <-
-  azmetr::az_daily(
-    "az39",
-    start_date = azmetStartDateCurrentMonthPreviousYear,
-    end_date = azmetEndDateCurrentMonthPreviousYear
-  )
-
-
 # For 'Recap' section -----
 
 azmetStartDateRecapMonth <- 
@@ -218,6 +190,34 @@ wibRecapMonth <-
     "az39", 
     start_date = azmetStartDateRecapMonth, 
     end_date = azmetEndDateRecapMonth
+  )
+
+
+# For 'Outlook' section -----
+
+azmetStartDateCurrentMonthPreviousYear <- 
+  paste(currentMonthPreviousYear, currentMonth, "01", sep = "-")
+
+azmetEndDateCurrentMonthPreviousYear <- 
+  paste(
+    currentMonthPreviousYear, 
+    currentMonth, 
+    lubridate::days_in_month(lubridate::ym(paste(currentYear, currentMonth, sep = "-"))),
+    sep = "-"
+  )
+
+bonCurrentMonthPreviousYear <- 
+  azmetr::az_daily(
+    "az09", 
+    start_date = azmetStartDateCurrentMonthPreviousYear, 
+    end_date = azmetEndDateCurrentMonthPreviousYear
+  )
+
+wibCurrentMonthPreviousYear <-
+  azmetr::az_daily(
+    "az39",
+    start_date = azmetStartDateCurrentMonthPreviousYear,
+    end_date = azmetEndDateCurrentMonthPreviousYear
   )
 ```
 

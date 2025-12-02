@@ -301,5 +301,5 @@ rm(ava)
 dplyr::as_tibble(avaStatsMonth)
 dplyr::as_tibble(avaStatsNormal)
 
-saveRDS(avaStatsMonth, file = "recap/avaStatsMonth.RDS")
-saveRDS(avaStatsNormal, file = "recap/avaStatsNormal.RDS")
+saveRDS(avaStatsMonth, file = "./recap/avaStatsMonth.RDS")
+saveRDS(avaStatsNormal, file = "./recap/avaStatsNormal.RDS")
