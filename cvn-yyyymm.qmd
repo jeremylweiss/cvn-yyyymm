@@ -1,0 +1,384 @@
+---
+title: "Climate Viticulture Newsletter - [year] [month]"
+editor: source
+execute: 
+  echo: false
+format: html
+---
+
+```{r}
+#| label: load-packages
+#| message: false
+
+library(azmetr)
+library(lubridate)
+```
+
+```{r}
+#| label: define-variables
+#| message: false
+
+currentMonth <- 12
+currentYear <- 2025
+```
+
+```{r}
+#| label: set-text-variables
+#| message: false
+
+avaMonthlyNormalsPrecipitation <- 
+  list(
+    "Respective January normals are 1.24, 1.45, and 1.07 inches", # January
+    "Respective February normals are 1.12, 1.43, and 0.93 inches",
+    "Respective March normals are 0.97, 1.31, and 0.76 inches",
+    "Respective April normals are 0.38, 0.55, and 0.25 inches",
+    "Respective May normals are 0.22, 0.44, and 0.29 inches",
+    "Respective June normals are 0.55, 0.18, and 0.42 inches",
+    "Respective July normals are 4.06, 1.75, and 2.67 inches",
+    "Respective August normals are 3.95, 2.40, and 2.80 inches",
+    "Respective September normals are 1.95, 1.53, and 1.40 inches",
+    "Respective October normals are 0.95, 1.05, and 0.76 inches",
+    "Respective November normals are 0.84, 0.83, and 0.73 inches",
+    "Respective December normals are 1.40, 1.37, and 1.08 inches" # December
+  )
+
+avaMonthlyNormalsTemperature <- 
+  list(
+    "Respective January normals are 58.7 and 31.2 °F, 58.1 and 30.6 °F, and 59.6 and 30.2 °F", # January
+    "Respective February normals are 61.2 and 33.2 °F, 61.6 and 32.9 °F, and 63.1 and 32.7 °F",
+    "Respective March normals are 67.1 and 36.9 °F, 68.0 and 37.6 °F, and 69.4 and 37.1 °F",
+    "Respective April normals are 73.5 and 41.9 °F, 75.5 and 42.6 °F, and 76.7 and 42.0 °F",
+    "Respective May normals are 81.7 and 49.6 °F, 84.5 and 50.0 °F, and 84.8 and 48.9 °F",
+    "Respective June normals are 90.6 and 59.0 °F, 95.4 and 58.4 °F, and 94.5 and 59.1 °F",
+    "Respective July normals are 88.5 and 62.8 °F, 98.1 and 66.0 °F, and 93.6 and 64.9 °F",
+    "Respective August normals are 86.3 and 61.7 °F, 95.7 and 65.2 °F, and 91.2 and 63.8 °F",
+    "Respective September normals are 83.9 and 57.0 °F, 90.4 and 58.4 °F, and 87.8 and 58.3 °F",
+    "Respective October normals are 77.3 and 47.5 °F, 80.2 and 47.0 °F, and 79.9 and 46.8 °F",
+    "Respective November normals are 67.2 and 38.2 °F, 67.5 and 36.6 °F, and 68.6 and 36.7 °F",
+    "Respective December normals are 58.3 and 31.5 °F, 57.2 and 30.0 °F, and 59.0 and 30.2 °F" # December
+  )
+
+currentMonthName <- lubridate::month(currentMonth, label = TRUE, abbr = FALSE)
+
+currentMonthPreviousYear <- currentYear - 1
+
+currentIssueURL <-
+  paste0(
+    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName)
+  )
+
+currentIssueOutlookURL <-
+  paste0(
+    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#outlook"
+  )
+
+currentIssueRecapURL <-
+  paste0(
+    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#recap"
+  )
+
+followingMonth <- 
+  lubridate::month(
+    lubridate::ym(paste(currentYear, currentMonth, sep = "-")) %m+% months(1),
+    label = FALSE,
+    abbr = FALSE
+  )
+
+followingMonthName <- 
+  lubridate::month(
+    lubridate::ym(paste(currentYear, currentMonth, sep = "-")) %m+% months(1),
+    label = TRUE,
+    abbr = FALSE
+  )
+
+followingMonthYear <- 
+  lubridate::year(
+    lubridate::ym(paste(currentYear, currentMonth, sep = "-")) %m+% months(1)
+  )
+
+followingMonthPreviousYear <- followingMonthYear - 1
+
+followingMonthPreviousYearURL <- 
+  paste0(
+    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", followingMonthPreviousYear, "-", tolower(followingMonthName), "#recap"
+  )
+
+listservTopicsNWS <- 
+  list(
+    "cold-air outbreaks and the occasional winter storm", # January
+    "cold-air outbreaks and the occasional winter storm",
+    "spring freezes and high-wind days",
+    "spring freezes and high-wind days",
+    "late-spring freezes and high-wind days",
+    "heat waves and monsoon outbreaks",
+    "heat waves and monsoon outbreaks",
+    "heat waves and monsoon outbreaks",
+    "heavy rainfall from tropical cyclone remnants and late-season heat waves",
+    "heavy rainfall from tropical storm remnants and early fall freezes",
+    "fall freezes and the occasional winter storm",
+    "cold-air outbreaks and the occasional winter storm" # December
+  )
+
+recapFootnote <- 
+  ifelse(
+    currentMonth %in% c(7, 8, 9, 10),
+    "Dig further into [daily weather summaries](https://azmet.arizona.edu/past-data/network-wide-summary) for the AZMet Bonita and Willcox Bench stations in the Willcox AVA and the AZMet Elgin station in the Sonoita AVA. View seasonal summaries of monsoon rainfall through regional [maps](https://cals.arizona.edu/climate/misc/SWMonsoonMaps/current/swus_monsoon.html) and [weather station statistics](https://cals.arizona.edu/climate/misc/stations/index.html). [Learn more](https://prism.oregonstate.edu/) about PRISM climate data.",
+    "Dig further into [daily weather summaries](https://azmet.arizona.edu/past-data/network-wide-summary) for the AZMet Bonita and Willcox Bench stations in the Willcox AVA and the AZMet Elgin station in the Sonoita AVA. [Learn more](https://prism.oregonstate.edu/) about PRISM climate data."
+  )
+
+recapMonth <- 
+  lubridate::month(
+    lubridate::ym(paste(currentYear, currentMonth, sep = "-")) %m-% months(1),
+    label = FALSE,
+    abbr = FALSE
+  )
+
+recapMonthName <- 
+  lubridate::month(
+    lubridate::ym(paste(currentYear, currentMonth, sep = "-")) %m-% months(1),
+    label = TRUE,
+    abbr = FALSE
+  )
+
+recapMonthYear <- 
+  lubridate::year(
+    lubridate::ym(paste(currentYear, currentMonth, sep = "-")) %m-% months(1)
+  )
+
+recapMonthPreviousYear <- recapMonthYear - 1
+
+recapMonthPreviousYearURL <- 
+  paste0(
+    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", recapMonthPreviousYear, "-", tolower(currentMonthName), "#recap"
+  )
+```
+
+```{r}
+#| label: set-azmet-analysis-variables
+#| message: false
+
+
+# For 'Outlook' section -----
+
+azmetStartDateCurrentMonthPreviousYear <- 
+  paste(currentMonthPreviousYear, currentMonth, "01", sep = "-")
+
+azmetEndDateCurrentMonthPreviousYear <- 
+  paste(
+    currentMonthPreviousYear, 
+    currentMonth, 
+    lubridate::days_in_month(lubridate::ym(paste(currentYear, currentMonth, sep = "-"))),
+    sep = "-"
+  )
+
+bonCurrentMonthPreviousYear <- 
+  azmetr::az_daily(
+    "az09", 
+    start_date = azmetStartDateCurrentMonthPreviousYear, 
+    end_date = azmetEndDateCurrentMonthPreviousYear
+  )
+
+wibCurrentMonthPreviousYear <-
+  azmetr::az_daily(
+    "az39",
+    start_date = azmetStartDateCurrentMonthPreviousYear,
+    end_date = azmetEndDateCurrentMonthPreviousYear
+  )
+
+
+# For 'Recap' section -----
+
+azmetStartDateRecapMonth <- 
+  paste(recapMonthYear, recapMonth, "01", sep = "-")
+
+azmetEndDateRecapMonth <- 
+  paste(
+    recapMonthYear, 
+    recapMonth, 
+    lubridate::days_in_month(lubridate::ym(paste(recapMonthYear, recapMonth, sep = "-"))),
+    sep = "-"
+  )
+
+bonRecapMonth <- 
+  azmetr::az_daily(
+    "az09", 
+    start_date = azmetStartDateRecapMonth, 
+    end_date = azmetEndDateRecapMonth
+  )
+
+elgRecapMonth <- 
+  azmetr::az_daily(
+    "az47", 
+    start_date = azmetStartDateRecapMonth, 
+    end_date = azmetEndDateRecapMonth
+  )
+
+wibRecapMonth <- 
+  azmetr::az_daily(
+    "az39", 
+    start_date = azmetStartDateRecapMonth, 
+    end_date = azmetEndDateRecapMonth
+  )
+```
+
+##
+Hello, everyone!
+
+This is the `r paste0("[", currentMonthName, " ", currentYear, "](", currentIssueURL, ")")` issue of the [Climate Viticulture Newsletter](https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter) - a quick look at some timely climate topics relevant to wine grape growing in Arizona.
+
+In this issue:
+
+-   A Recap of `r recapMonthName` Temperature and Precipitation
+
+-   The Outlook for `r currentMonthName` Temperature and Precipitation
+
+-   [Special Topic #1]{.mark}
+
+-   [Special Topic #2]{.mark}
+
+-   [Special Topic #3]{.mark}
+
+-   Extra Notes
+
+<br>
+
+[<small>*Not all email clients and devices support table-of-contents links*</small>]{style="color:gray"}
+
+
+
+<br>
+
+## A Recap of `r recapMonthName` Temperature and Precipitation
+
+Monthly average temperatures were [2 to 4 °F above the]{.mark} [1991-2020 normal](https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-2021-june#newclimatenormals) [for most of the southern half of Arizona (A and B areas on map). Much of the rest of the state recorded near-normal temperatures (C areas on map)]{.mark}. For reference, monthly-average temperatures in `r paste0("[", recapMonthName, " ", recapMonthPreviousYear, "](", recapMonthPreviousYearURL, ")")` were [within 2 °F of normal for the eastern third of the state and 2 to 4 °F below normal for the western two-thirds]{.mark}.
+
+Area-average maximum and minimum temperatures during `r recapMonthName` `r recapMonthYear` were [VALUE]{.mark} and [VALUE]{.mark} °F for the [Sonoita AVA](https://cals.arizona.edu/research/climategem/content/sonoita-ava), [VALUE]{.mark} and [VALUE]{.mark} °F for the [Verde Valley AVA](https://cals.arizona.edu/research/climategem/content/verde-valley-ava), and [VALUE]{.mark} and [VALUE]{.mark} °F for the [Willcox AVA](https://cals.arizona.edu/research/climategem/content/willcox-ava). `r avaMonthlyNormalsTemperature[recapMonth]`.
+
+Temperature last month ranged between `r format(round(max(bonRecapMonth$temp_air_maxF, na.rm = TRUE), digits = 1), nsmall = 1)` and `r format(round(min(bonRecapMonth$temp_air_minF, na.rm = TRUE), digits = 1), nsmall = 1)` °F at the AZMet [Bonita](https://azmet.arizona.edu/about/station-metadata/az09) station, `r format(round(max(elgRecapMonth$temp_air_maxF, na.rm = TRUE), digits = 1), nsmall = 1)` and `r format(round(min(elgRecapMonth$temp_air_minF, na.rm = TRUE), digits = 1), nsmall = 1)` °F at the AZMet [Elgin](https://azmet.arizona.edu/about/station-metadata/az47) station, and `r format(round(max(wibRecapMonth$temp_air_maxF, na.rm = TRUE), digits = 1), nsmall = 1)` and `r format(round(min(wibRecapMonth$temp_air_minF, na.rm = TRUE), digits = 1), nsmall = 1)` °F at the AZMet [Willcox Bench](https://azmet.arizona.edu/about/station-metadata/az39) station.
+
+[IMAGE]{.mark}
+
+`r paste0("[link](", currentIssueRecapURL, ")")`
+
+<br>
+
+Monthly precipitation totals were [more than 150 % of normal for many parts of the state (A, B, and C areas on map). Only locations in south-central and southeastern Arizona recorded below-normal totals (D and E areas on map)]{.mark}. Precipitation during `r paste0("[", recapMonthName, " ", recapMonthPreviousYear, "](", recapMonthPreviousYearURL, ")")` was [generally less than 50 % of normal for much of the southern half of the state and near to more than 150 % of normal for much of the northern half]{.mark}.
+
+Area-average total precipitation in `r recapMonthName` `r recapMonthYear` was [VALUE]{.mark} inches for the Sonoita AVA, [VALUE]{.mark} inches for the Verde Valley AVA, and [VALUE]{.mark} inches for the Willcox AVA. `r avaMonthlyNormalsPrecipitation[recapMonth]`.
+
+Total precipitation last month was `r format(round(sum(bonRecapMonth$precip_total_in, na.rm = TRUE), digits = 2), nsmall = 2)`, `r format(round(sum(elgRecapMonth$precip_total_in, na.rm = TRUE), digits = 2), nsmall = 2)`, and `r format(round(sum(wibRecapMonth$precip_total_in, na.rm = TRUE), digits = 2), nsmall = 2)` inches at the AZMet Bonita, Elgin, and Willcox Bench stations, respectively.
+
+[IMAGE]{.mark}
+
+`r paste0("[link](", currentIssueRecapURL, ")")`
+
+<br>
+
+`r recapFootnote`
+
+Back to top
+
+
+
+
+<br>
+
+## The Outlook for `r currentMonthName` Temperature and Precipitation
+
+Temperatures over the course of this month have [a slight/moderate/strong decrease/increase in / equal]{.mark} chances for [being above/below/near / below, near, or above]{.mark} the [1991-2020 normal](https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-2021-june#newclimatenormals) [across the eastern half of Arizona (A area on map). For the western half, there are equal chances for below-, near-, or above-normal temperatures (white area on map)]{.mark}. Monthly average temperatures in `r paste0("[", currentMonthName, " ", currentMonthPreviousYear, "](", followingMonthPreviousYearURL, ")")` were [2 to 4 °F above normal for almost all of the state]{.mark}.
+
+Area-average maximum and minimum temperature during `r currentMonthName` `r currentMonthPreviousYear` were [VALUE]{.mark} and [VALUE]{.mark} °F for the [Sonoita AVA](https://cals.arizona.edu/research/climategem/content/sonoita-ava), [VALUE]{.mark} and [VALUE]{.mark} °F for the [Verde Valley AVA](https://cals.arizona.edu/research/climategem/content/verde-valley-ava), and [VALUE]{.mark} and [VALUE]{.mark} °F for the [Willcox AVA](https://cals.arizona.edu/research/climategem/content/willcox-ava). `r avaMonthlyNormalsTemperature[currentMonth]`.
+
+Temperature in `r currentMonthName` last year ranged between `r format(round(max(bonCurrentMonthPreviousYear$temp_air_maxF, na.rm = TRUE), digits = 1), nsmall = 1)` and `r format(round(min(bonCurrentMonthPreviousYear$temp_air_minF, na.rm = TRUE), digits = 1), nsmall = 1)` °F at the AZMet [Bonita](https://azmet.arizona.edu/about/station-metadata/az09) station and between `r format(round(max(wibCurrentMonthPreviousYear$temp_air_maxF, na.rm = TRUE), digits = 1), nsmall = 1)` and `r format(round(min(wibCurrentMonthPreviousYear$temp_air_minF, na.rm = TRUE), digits = 1), nsmall = 1)` °F at the AZMet [Willcox Bench](https://azmet.arizona.edu/about/station-metadata/az39) station.
+
+[IMAGE]{.mark}
+
+`r paste0("[link](", currentIssueOutlookURL, ")")`
+
+<br>
+
+Precipitation totals for this month have [a slight/moderate/strong decrease/increase in / equal]{.mark} chances for [being above/below/near / below, near, or above]{.mark} normal [across the northern one-third of the state (A area on map)]{.mark}. [For the southern two-thirds, there are equal chances for below-, near-, or above-normal totals (white area on map)]{.mark}. Precipitation during `r paste0("[", currentMonthName, " ", currentMonthPreviousYear, "](", followingMonthPreviousYearURL, ")")` was [less than 25 % of normal for almost all of Arizona]{.mark}.
+
+Area-average precipitation totals in `r currentMonthName` `r currentMonthPreviousYear` were [VALUE]{.mark} inches for the Sonoita AVA, [VALUE]{.mark} inches for the Verde Valley AVA, and [VALUE]{.mark} inches for the Willcox AVA. `r avaMonthlyNormalsPrecipitation[currentMonth]`.
+
+Total precipitation in `r currentMonthName` last year was `r format(round(sum(bonCurrentMonthPreviousYear$precip_total_in, na.rm = TRUE), digits = 2), nsmall = 2)` and `r format(round(sum(wibCurrentMonthPreviousYear$precip_total_in, na.rm = TRUE), digits = 2), nsmall = 2)` inches at the AZMet Bonita and Willcox Bench stations, respectively.
+
+[IMAGE]{.mark}
+
+`r paste0("[link](", currentIssueOutlookURL, ")")`
+
+<br>
+
+To stay informed of long-range temperature and precipitation possibilities beyond the coverage of a [standard weather forecast](https://www.weather.gov/), check in, too, with the [six-to-ten-day outlook](https://www.cpc.ncep.noaa.gov/products/predictions/610day/) and [eight-to-fourteen-day outlook](https://www.cpc.ncep.noaa.gov/products/predictions/814day/) issued daily by [NOAA’s Climate Prediction Center](https://www.cpc.ncep.noaa.gov/).
+
+
+
+
+<br>
+
+## Special Topic #1
+
+[TEXT]{.mark}
+
+
+
+
+<br>
+
+## Special Topic #2
+
+[TEXT]{.mark}
+
+<br>
+
+
+
+
+## Special Topic #3
+
+[TEXT]{.mark}
+
+<br>
+
+
+
+
+## Extra Notes
+
+[TEXT]{.mark}
+
+[TEXT]{.mark}
+
+[TEXT]{.mark}
+
+Given recent and current conditions, there is [a [below-normal/normal/above-normal potential](https://www.nifc.gov/nicc/predictive-services/outlooks) for]{.mark} significant wildland fires across [some parts/all of]{.mark} Arizona in `r currentMonthName`, as based on the outlook from the National Interagency Fire Center.
+
+[Describe [ENSO general information](https://www.climate.gov/news-features/understanding-climate/el-ni%C3%B1o-and-la-ni%C3%B1a-frequently-asked-questions) and [Latest ENSO forecast](https://iri.columbia.edu/our-expertise/climate/forecasts/enso/current/)]{.mark}.
+
+For those of you in southeastern Arizona, including the [Sonoita](https://cals.arizona.edu/research/climategem/content/sonoita-ava) and [Willcox](https://cals.arizona.edu/research/climategem/content/willcox-ava) AVAs, Cooperative Extension manages an email listserv in coordination with the [Tucson forecast office of the National Weather Service](https://www.weather.gov/twc/) to provide information in the days leading up to agriculturally important events, like `r listservTopicsNWS[currentMonth]`. Please contact us if you'd like to [sign up](mailto:jlweiss@arizona.edu?subject=southeastern%20Arizona%20weather%20listserv).
+
+And for those of you in north-central and northeastern Arizona, including the [Verde Valley AVA](https://cals.arizona.edu/research/climategem/content/verde-valley-ava), Cooperative Extension also now manages an email listserv in coordination with the [Flagstaff forecast office of the National Weather Service](https://www.weather.gov/fgz/) to provide similar information for this part of the state. Please contact us if you'd like to [sign up](mailto:jlweiss@arizona.edu?subject=northern%20Arizona%20weather%20listserv).
+
+Undergraduate students in the College of Agriculture and Life Sciences at the University of Arizona are looking for internships with businesses and companies in the viticulture and winery industries. Please contact [Danielle Buhrow](mailto:danielleb@arizona.edu?subject=UA%20student%20internships%20in%20AZ%20viticulture%20and%20winery%20industries), Senior Academic Advisor and Graduate Program Coordinator in the Department of Agricultural and Resource Economics, for more information.
+
+Please feel free to give us [feedback](mailto:jlweiss@arizona.edu?subject=Climate%20Viticulture%20Newsletter%20feedback) on this issue of the Climate Viticulture Newsletter, suggestions on what to include more or less often, and ideas for new topics.
+
+Did someone forward you this newsletter? Please [contact us](mailto:jlweiss@arizona.edu?subject=Climate%20Viticulture%20Newsletter%20subscribe) to subscribe.
+
+Have a wonderful `r currentMonthName`!
+
+Jeremy
+
+<br>
+
+*With current and past support from:*
+
+AZDA
+
+USDA Climate Hubs
+
+CLIMAS
+
+NOAA
+
+USGS
