@@ -163,8 +163,8 @@ recapMonthPreviousYearURL <-
 
 # For 'Recap' section -----
 
-# avaStatsMonthRecap <- readRDS(file = "./recap/avaStatsMonth.RDS")
-# avaStatsNormalRecap <- readRDS("./recap/avaStatsNormal.RDS")
+avaStatsMonthRecap <- readRDS(file = "./recap/avaStatsMonth.RDS")
+avaStatsNormalRecap <- readRDS("./recap/avaStatsNormal.RDS")
 
 
 # For 'Outlook' section -----

@@ -20,7 +20,7 @@ prism::prism_set_dl_dir("./recap/prism-tmp", create = TRUE)
 
 # For AVA-level statistics
 azClip <- sf::st_read("./recap/spatial-data/tl-2019-us-state-az-bndbox.shp")
-azLatLon <- read.csv(file = "./recap/patial-data/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
+azLatLon <- read.csv(file = "./recap/spatial-data/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
 azLon <- unique(azLatLon$x_center)
 azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 
