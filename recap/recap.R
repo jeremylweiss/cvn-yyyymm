@@ -2,7 +2,7 @@
 
 # Code downloads monthly PRISM data and computes anomalies of previous month of current year versus 1991-2020 normals, and saves results as .RDS files
 
-# !!! Review recap month and year, AZMet start and end dates in PARAMETERS before running !!!
+# !!! Set recap month and year, AZMet start and end dates in PARAMETERS before running !!!
 
 # TODO: Make a function for this
 
@@ -16,11 +16,11 @@ library(raster)
 library(sf)
 library(stars)
 
-prism::prism_set_dl_dir("./prism-tmp", create = TRUE)
+prism::prism_set_dl_dir("./recap/prism-tmp", create = TRUE)
 
 # For AVA-level statistics
-azClip <- sf::st_read("./spatial-data-layers/tl-2019-us-state-az-bndbox.shp")
-azLatLon <- read.csv(file = "./spatial-data-layers/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
+azClip <- sf::st_read("./recap/spatial-data/tl-2019-us-state-az-bndbox.shp")
+azLatLon <- read.csv(file = "./recap/patial-data/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
 azLon <- unique(azLatLon$x_center)
 azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 
@@ -28,8 +28,8 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 # PARAMETERS --------------------
 
 
-recapMonth <- 10
-recapYear <- 2025
+# recapMonth <- 11 # <MONTH - 1>
+# recapYear <- 2025
 
 # PRISM monthly variables, options are "ppt", "tmax", "tmean", "tmin", "vpdmax", and "vpdmin"
 climVars <- c("ppt", "tmean", "tmax", "tmin")
@@ -157,7 +157,7 @@ for (cv in climVars) {
   prismMonth <- 
     raster::raster(
       paste0(
-        "./prism-tmp/", 
+        "./recap/prism-tmp/", 
         "prism_", cv, "_us_25m_", recapYear, recapMonth, "/",
         "prism_", cv, "_us_25m_", recapYear, recapMonth, ".bil"
       )
@@ -166,7 +166,7 @@ for (cv in climVars) {
   prismNormal <- 
     raster::raster(
       paste0(
-        "./prism-tmp/",
+        "./recap/prism-tmp/",
         "prism_", cv, "_us_25m_2020", recapMonth, "_avg_30y/",
         "prism_", cv, "_us_25m_2020", recapMonth, "_avg_30y.tif"
       )
@@ -224,7 +224,7 @@ pptPercentNormalShp <-
 pptPercentNormalShp <- pptPercentNormalShp %>%
   sf::st_as_sf(as_points = FALSE, merge = TRUE)
 
-sf::st_write(pptPercentNormalShp, "./spatial-data-layers/pptPercentNormal.shp")
+sf::st_write(pptPercentNormalShp, "./recap/spatial-data/pptPercentNormal.shp")
 
 tmeanDepartureNormalShp <- 
   sf::st_crop(stars::st_as_stars(tmeanDepartureNormal), boundingBox)
@@ -232,7 +232,7 @@ tmeanDepartureNormalShp <-
 tmeanDepartureNormalShp <- tmeanDepartureNormalShp %>%
   sf::st_as_sf(as_points = FALSE, merge = TRUE)
 
-sf::st_write(tmeanDepartureNormalShp, "./spatial-data-layers/tmeanDepartureNormal.shp")
+sf::st_write(tmeanDepartureNormalShp, "./recap/spatial-data/tmeanDepartureNormal.shp")
 
 
 # AVA STATISTICS --------------------
@@ -241,7 +241,7 @@ sf::st_write(tmeanDepartureNormalShp, "./spatial-data-layers/tmeanDepartureNorma
 for (ava in avas) {
   # Load latitude and longitude values for the AVA that correspond to gridcell centers of the 4-km PRISM grid mesh
   avaLatLon <- 
-    read.csv(paste0("./spatial-data-layers/prism-mesh-gcsna1983-", ava, ".csv"))
+    read.csv(paste0("./recap/spatial-data/prism-mesh-gcsna1983-", ava, ".csv"))
   
   for (cv in climVars) {
     print(paste0("Starting summaries for: ", ava, " and ", cv))
@@ -301,5 +301,5 @@ rm(ava)
 dplyr::as_tibble(avaStatsMonth)
 dplyr::as_tibble(avaStatsNormal)
 
-saveRDS(avaStatsMonth, file = "avaStatsMonth.RDS")
-saveRDS(avaStatsNormal, file = "avaStatsNormal.RDS")
+saveRDS(avaStatsMonth, file = "recap/avaStatsMonth.RDS")
+saveRDS(avaStatsNormal, file = "recap/avaStatsNormal.RDS")
