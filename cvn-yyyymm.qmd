@@ -3,7 +3,9 @@ title: "Climate Viticulture Newsletter - [year] [month]"
 editor: source
 execute: 
   echo: false
-format: html
+format: 
+  docx:
+    output-file: "cvn-yyyymm.docx"
 ---
 
 ```{r}
