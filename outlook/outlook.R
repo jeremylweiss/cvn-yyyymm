@@ -11,11 +11,14 @@
 
 
 library(dplyr)
+library(httr)
 library(prism)
 library(raster)
 library(sf)
 library(stars)
 
+cpcPrcpFigURL <- "https://www.cpc.ncep.noaa.gov/products/predictions/long_range/lead14/off15_prcp.gif"
+cpcTempFigURL <- "https://www.cpc.ncep.noaa.gov/products/predictions/long_range/lead14/off15_temp.gif"
 cpcPrcpURL <- "https://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/monthlyupdate/monthupd_prcp_latest.zip"
 cpcTempURL <- "https://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/monthlyupdate/monthupd_temp_latest.zip"
 
@@ -130,8 +133,14 @@ summarizePrism <- function(climVar, prismExtract) {
 }
 
 
-# DOWNLOAD SHAPEFILES --------------------
+# DOWNLOAD CPC FIGURES AND SHAPEFILES --------------------
 
+
+cpc30DayText <- httr::content(httr::GET(cpc30DayTextURL), "text", encoding = "UTF-8")
+writeLines(cpc30DayText, con = "./outlook/cpc30DayText.html")
+
+download.file(url = cpcPrcpFigURL, destfile = "./outlook/off15_prcp.gif")
+download.file(url = cpcTempFigURL, destfile = "./outlook/off15_temp.gif")
 
 for(climVar in c("prcp", "temp")) {
   tf <- tempfile()
