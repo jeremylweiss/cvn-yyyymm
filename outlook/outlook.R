@@ -17,6 +17,7 @@ library(raster)
 library(sf)
 library(stars)
 
+cpc30DayTextURL <- "https://www.cpc.ncep.noaa.gov/products/predictions/long_range/fxus07.html"
 cpcPrcpFigURL <- "https://www.cpc.ncep.noaa.gov/products/predictions/long_range/lead14/off15_prcp.gif"
 cpcTempFigURL <- "https://www.cpc.ncep.noaa.gov/products/predictions/long_range/lead14/off15_temp.gif"
 cpcPrcpURL <- "https://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/monthlyupdate/monthupd_prcp_latest.zip"
