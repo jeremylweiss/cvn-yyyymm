@@ -344,14 +344,22 @@ To stay informed of long-range temperature and precipitation possibilities beyon
 
 [TEXT]{.mark}
 
+[IMAGE]{.mark}
 
-
+`r paste0("[link](", currentIssueURL, ")")`
 
 <br>
+
+
+
 
 ## Special Topic #2
 
 [TEXT]{.mark}
+
+[IMAGE]{.mark}
+
+`r paste0("[link](", currentIssueURL, ")")`
 
 <br>
 
@@ -361,6 +369,10 @@ To stay informed of long-range temperature and precipitation possibilities beyon
 ## Special Topic #3
 
 [TEXT]{.mark}
+
+[IMAGE]{.mark}
+
+`r paste0("[link](", currentIssueURL, ")")`
 
 <br>
 
