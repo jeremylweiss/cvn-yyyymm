@@ -1,5 +1,6 @@
 ---
 title: "Climate Viticulture Newsletter - [year] [month]"
+subtitle: "[year] [month]"
 editor: source
 execute: 
   echo: false
@@ -66,17 +67,17 @@ currentMonthPreviousYear <- currentYear - 1
 
 currentIssueURL <-
   paste0(
-    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName)
+    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName)
   )
 
 currentIssueOutlookURL <-
   paste0(
-    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#outlook"
+    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#outlook"
   )
 
 currentIssueRecapURL <-
   paste0(
-    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#recap"
+    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#recap"
   )
 
 followingMonth <- 
@@ -102,7 +103,7 @@ followingMonthPreviousYear <- followingMonthYear - 1
 
 followingMonthPreviousYearURL <- 
   paste0(
-    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", followingMonthPreviousYear, "-", tolower(followingMonthName), "#recap"
+    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", followingMonthPreviousYear, "-", tolower(followingMonthName), "#recap"
   )
 
 listservTopicsNWS <- 
@@ -151,7 +152,7 @@ recapMonthPreviousYear <- recapMonthYear - 1
 
 recapMonthPreviousYearURL <- 
   paste0(
-    "https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-", recapMonthPreviousYear, "-", tolower(currentMonthName), "#recap"
+    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", recapMonthPreviousYear, "-", tolower(currentMonthName), "#recap"
   )
 ```
 
@@ -248,7 +249,7 @@ wibCurrentMonthPreviousYear <-
 ##
 Hello, everyone!
 
-This is the `r paste0("[", currentMonthName, " ", currentYear, "](", currentIssueURL, ")")` issue of the [Climate Viticulture Newsletter](https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter) - a quick look at some timely climate topics relevant to wine grape growing in Arizona.
+This is the `r paste0("[", currentMonthName, " ", currentYear, "](", currentIssueURL, ")")` issue of the [Climate Viticulture Newsletter](https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter) - a quick look at some timely climate topics relevant to wine grape growing in Arizona.
 
 In this issue:
 
