@@ -26,8 +26,8 @@ cpcTempURL <- "https://ftp.cpc.ncep.noaa.gov/GIS/us_tempprcpfcst/monthlyupdate/m
 prism::prism_set_dl_dir("./outlook/prism-tmp", create = TRUE)
 
 # For AVA-level statistics
-azClip <- sf::st_read("./outlook/tl-2019-us-state-az-bndbox.shp")
-azLatLon <- read.csv(file = "./outlook/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
+azClip <- sf::st_read("./spatial-data/tl-2019-us-state-az-bndbox.shp")
+azLatLon <- read.csv(file = "./spatial-data/prism-mesh-gcsna1983-az-bndbox.csv", header = TRUE)
 azLon <- unique(azLatLon$x_center)
 azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 
@@ -37,6 +37,12 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 
 # outlookMonth <- 12
 # outlookYear <- 2024 # <YEAR - 1>
+
+if (outlookMonth < 10) {
+  outlookMonthText <- paste0("0", outlookMonth)
+} else {
+  as.character(outlookMonth)
+}
 
 # PRISM monthly variables, options are "ppt", "tmax", "tmean", "tmin", "vpdmax", and "vpdmin"
 climVars <- c("ppt", "tmax", "tmean", "tmin")
@@ -190,8 +196,8 @@ for (cv in climVars) {
     raster::raster(
       paste0(
         "./outlook/prism-tmp/", 
-        "prism_", cv, "_us_25m_", outlookYear, outlookMonth, "/",
-        "prism_", cv, "_us_25m_", outlookYear, outlookMonth, ".bil"
+        "prism_", cv, "_us_25m_", outlookYear, outlookMonthText, "/",
+        "prism_", cv, "_us_25m_", outlookYear, outlookMonthText, ".bil"
       )
     )
   
@@ -199,8 +205,8 @@ for (cv in climVars) {
     raster::raster(
       paste0(
         "./outlook/prism-tmp/",
-        "prism_", cv, "_us_25m_2020", outlookMonth, "_avg_30y/",
-        "prism_", cv, "_us_25m_2020", outlookMonth, "_avg_30y.tif"
+        "prism_", cv, "_us_25m_2020", outlookMonthText, "_avg_30y/",
+        "prism_", cv, "_us_25m_2020", outlookMonthText, "_avg_30y.tif"
       )
     )
   
