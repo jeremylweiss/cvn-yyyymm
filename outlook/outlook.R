@@ -35,7 +35,7 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 # PARAMETERS --------------------
 
 
-# outlookMonth <- 12
+# outlookMonth <- 12 # <MONTH>
 # outlookYear <- 2024 # <YEAR - 1>
 
 if (outlookMonth < 10) {
