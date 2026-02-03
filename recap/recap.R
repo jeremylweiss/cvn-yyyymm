@@ -31,6 +31,12 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 # recapMonth <- 11 # <MONTH - 1>
 # recapYear <- 2025
 
+if (recapMonth < 10) {
+  recapMonthText <- paste0("0", recapMonth)
+} else {
+  as.character(recapMonth)
+}
+
 # PRISM monthly variables, options are "ppt", "tmax", "tmean", "tmin", "vpdmax", and "vpdmin"
 climVars <- c("ppt", "tmean", "tmax", "tmin")
 
@@ -158,8 +164,8 @@ for (cv in climVars) {
     raster::raster(
       paste0(
         "./recap/prism-tmp/", 
-        "prism_", cv, "_us_25m_", recapYear, recapMonth, "/",
-        "prism_", cv, "_us_25m_", recapYear, recapMonth, ".bil"
+        "prism_", cv, "_us_25m_", recapYear, recapMonthText, "/",
+        "prism_", cv, "_us_25m_", recapYear, recapMonthText, ".bil"
       )
     )
     
@@ -167,8 +173,8 @@ for (cv in climVars) {
     raster::raster(
       paste0(
         "./recap/prism-tmp/",
-        "prism_", cv, "_us_25m_2020", recapMonth, "_avg_30y/",
-        "prism_", cv, "_us_25m_2020", recapMonth, "_avg_30y.tif"
+        "prism_", cv, "_us_25m_2020", recapMonthText, "_avg_30y/",
+        "prism_", cv, "_us_25m_2020", recapMonthText, "_avg_30y.tif"
       )
     )
     
