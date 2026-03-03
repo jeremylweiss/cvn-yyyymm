@@ -67,17 +67,17 @@ currentMonthPreviousYear <- currentYear - 1
 
 currentIssueURL <-
   paste0(
-    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName)
+    "https://archive.cales.arizona.edu/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName)
   )
 
 currentIssueOutlookURL <-
   paste0(
-    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#outlook"
+    "https://archive.cales.arizona.edu/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#outlook"
   )
 
 currentIssueRecapURL <-
   paste0(
-    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#recap"
+    "https://archive.cales.arizona.edu/climategem/climate-viticulture-newsletter-", currentYear, "-", tolower(currentMonthName), "#recap"
   )
 
 followingMonth <- 
@@ -103,7 +103,7 @@ followingMonthPreviousYear <- followingMonthYear - 1
 
 followingMonthPreviousYearURL <- 
   paste0(
-    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", followingMonthPreviousYear, "-", tolower(followingMonthName), "#recap"
+    "https://archive.cales.arizona.edu/climategem/climate-viticulture-newsletter-", followingMonthPreviousYear, "-", tolower(followingMonthName), "#recap"
   )
 
 listservTopicsNWS <- 
@@ -125,7 +125,7 @@ listservTopicsNWS <-
 recapFootnote <- 
   ifelse(
     currentMonth %in% c(7, 8, 9, 10),
-    "Dig further into [daily weather summaries](https://azmet.arizona.edu/past-data/network-wide-summary) for the AZMet Bonita and Willcox Bench stations in the Willcox AVA and the AZMet Elgin station in the Sonoita AVA. View seasonal summaries of monsoon rainfall through regional [maps](https://cals.arizona.edu/climate/misc/SWMonsoonMaps/current/swus_monsoon.html) and [weather station statistics](https://cals.arizona.edu/climate/misc/stations/index.html). [Learn more](https://prism.oregonstate.edu/) about PRISM climate data.",
+    "Dig further into [daily weather summaries](https://azmet.arizona.edu/past-data/network-wide-summary) for the AZMet Bonita and Willcox Bench stations in the Willcox AVA and the AZMet Elgin station in the Sonoita AVA. View seasonal summaries of monsoon rainfall through regional [maps](https://cales.arizona.edu/climate/misc/SWMonsoonMaps/current/swus_monsoon.html) and [weather station statistics](https://cales.arizona.edu/climate/misc/stations/index.html). [Learn more](https://prism.oregonstate.edu/) about PRISM climate data.",
     "Dig further into [daily weather summaries](https://azmet.arizona.edu/past-data/network-wide-summary) for the AZMet Bonita and Willcox Bench stations in the Willcox AVA and the AZMet Elgin station in the Sonoita AVA. [Learn more](https://prism.oregonstate.edu/) about PRISM climate data."
   )
 
@@ -152,7 +152,7 @@ recapMonthPreviousYear <- recapMonthYear - 1
 
 recapMonthPreviousYearURL <- 
   paste0(
-    "https://cals.arizona.edu/research/climategem/climate-viticulture-newsletter-", recapMonthPreviousYear, "-", tolower(currentMonthName), "#recap"
+    "https://archive.cales.arizona.edu/climategem/climate-viticulture-newsletter-", recapMonthPreviousYear, "-", tolower(currentMonthName), "#recap"
   )
 ```
 
@@ -249,7 +249,7 @@ wibCurrentMonthPreviousYear <-
 ##
 Hello, everyone!
 
-This is the `r paste0("[", currentMonthName, " ", currentYear, "](", currentIssueURL, ")")` issue of the [Climate Viticulture Newsletter](https://cales.arizona.edu/research/climategem/content/climate-viticulture-newsletter) - a quick look at some timely climate topics relevant to wine grape growing in Arizona.
+This is the `r paste0("[", currentMonthName, " ", currentYear, "](", currentIssueURL, ")")` issue of the [Climate Viticulture Newsletter](https://archive.cales.arizona.edu/climategem/content/climate-viticulture-newsletter) - a quick look at some timely climate topics relevant to wine grape growing in Arizona.
 
 In this issue:
 
@@ -275,7 +275,7 @@ In this issue:
 
 ## A Recap of `r recapMonthName` Temperature and Precipitation
 
-Monthly average temperatures were [2 to 4 °F above the]{.mark} [1991-2020 normal](https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-2021-june#newclimatenormals) [for most of the southern half of Arizona (A and B areas on map). Much of the rest of the state recorded near-normal temperatures (C areas on map)]{.mark}. For reference, monthly average temperatures in `r paste0("[", recapMonthName, " ", recapMonthPreviousYear, "](", recapMonthPreviousYearURL, ")")` were [within 2 °F of normal for the eastern third of the state and 2 to 4 °F below normal for the western two-thirds]{.mark}.
+Monthly average temperatures were [2 to 4 °F above the]{.mark} [1991-2020 normal](https://archive.cales.arizona.edu/climategem/content/climate-viticulture-newsletter-2021-june#newclimatenormals) [for most of the southern half of Arizona (A and B areas on map). Much of the rest of the state recorded near-normal temperatures (C areas on map)]{.mark}. For reference, monthly average temperatures in `r paste0("[", recapMonthName, " ", recapMonthPreviousYear, "](", recapMonthPreviousYearURL, ")")` were [within 2 °F of normal for the eastern third of the state and 2 to 4 °F below normal for the western two-thirds]{.mark}.
 
 Area-average maximum and minimum temperatures during `r recapMonthName` `r recapMonthYear` were `r format(round(avaStatsMonthRecap |> dplyr::filter(Variable == "tmax" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsMonthRecap |> dplyr::filter(Variable == "tmin" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F for the [Sonoita AVA](https://extension.arizona.edu/programs/climategem/projects/sonoita-ava), `r format(round(avaStatsMonthRecap |> dplyr::filter(Variable == "tmax" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsMonthRecap |> dplyr::filter(Variable == "tmin" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F for the [Verde Valley AVA](https://extension.arizona.edu/programs/climategem/projects/verde-valley-ava), and `r format(round(avaStatsMonthRecap |> dplyr::filter(Variable == "tmax" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsMonthRecap |> dplyr::filter(Variable == "tmin" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F for the [Willcox AVA](https://extension.arizona.edu/programs/climategem/projects/willcox-ava). Respective `r recapMonthName` normals are `r format(round(avaStatsNormalRecap |> dplyr::filter(Variable == "tmax" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsNormalRecap |> dplyr::filter(Variable == "tmin" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F, `r format(round(avaStatsNormalRecap |> dplyr::filter(Variable == "tmax" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsNormalRecap |> dplyr::filter(Variable == "tmin" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F, and `r format(round(avaStatsNormalRecap |> dplyr::filter(Variable == "tmax" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsNormalRecap |> dplyr::filter(Variable == "tmin" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F.
 
@@ -310,7 +310,7 @@ Back to top
 
 ## The Outlook for `r currentMonthName` Temperature and Precipitation
 
-Temperatures over the course of this month have [a slight/moderate/strong decrease/increase in / equal]{.mark} chances for [being above/below/near / below, near, or above]{.mark} the [1991-2020 normal](https://cals.arizona.edu/research/climategem/content/climate-viticulture-newsletter-2021-june#newclimatenormals) [across the eastern half of Arizona (A area on map). For the western half, there are equal chances for below-, near-, or above-normal temperatures (white area on map)]{.mark}. Monthly average temperatures in `r paste0("[", currentMonthName, " ", currentMonthPreviousYear, "](", followingMonthPreviousYearURL, ")")` were [2 to 4 °F above normal for almost all of the state]{.mark}.
+Temperatures over the course of this month have [a slight/moderate/strong decrease/increase in / equal]{.mark} chances for [being above/below/near / below, near, or above]{.mark} the [1991-2020 normal](https://archive.cales.arizona.edu/climategem/content/climate-viticulture-newsletter-2021-june#newclimatenormals) [across the eastern half of Arizona (A area on map). For the western half, there are equal chances for below-, near-, or above-normal temperatures (white area on map)]{.mark}. Monthly average temperatures in `r paste0("[", currentMonthName, " ", currentMonthPreviousYear, "](", followingMonthPreviousYearURL, ")")` were [2 to 4 °F above normal for almost all of the state]{.mark}.
 
 Area-average maximum and minimum temperatures during `r currentMonthName` `r currentMonthPreviousYear` were `r format(round(avaStatsMonthOutlook |> dplyr::filter(Variable == "tmax" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsMonthOutlook |> dplyr::filter(Variable == "tmin" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F for the [Sonoita AVA](https://extension.arizona.edu/programs/climategem/projects/sonoita-ava), `r format(round(avaStatsMonthOutlook |> dplyr::filter(Variable == "tmax" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsMonthOutlook |> dplyr::filter(Variable == "tmin" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F for the [Verde Valley AVA](https://extension.arizona.edu/programs/climategem/projects/verde-valley-ava), and `r format(round(avaStatsMonthOutlook |> dplyr::filter(Variable == "tmax" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsMonthOutlook |> dplyr::filter(Variable == "tmin" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F for the [Willcox AVA](https://extension.arizona.edu/programs/climategem/projects/willcox-ava). Respective `r currentMonthName` normals are `r format(round(avaStatsNormalOutlook |> dplyr::filter(Variable == "tmax" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsNormalOutlook |> dplyr::filter(Variable == "tmin" & AVA == "sonoita-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F, `r format(round(avaStatsNormalOutlook |> dplyr::filter(Variable == "tmax" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsNormalOutlook |> dplyr::filter(Variable == "tmin" & AVA == "verde-valley-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F, and `r format(round(avaStatsNormalOutlook |> dplyr::filter(Variable == "tmax" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` and `r format(round(avaStatsNormalOutlook |> dplyr::filter(Variable == "tmin" & AVA == "willcox-ava") |> dplyr::pull(AreaAverageValue), digits = 1), nsmall = 1)` °F.
 
