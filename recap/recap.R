@@ -28,8 +28,8 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 # PARAMETERS --------------------
 
 
-# recapMonth <- 11 # <MONTH - 1>
-# recapYear <- 2025 # <YEAR>
+# recapMonth <- 2 # <MONTH - 1>, as integer
+# recapYear <- 2026 # <YEAR>
 
 if (recapMonth < 10) {
   recapMonthText <- paste0("0", recapMonth)
