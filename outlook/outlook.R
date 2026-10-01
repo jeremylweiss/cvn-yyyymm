@@ -41,7 +41,7 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 if (outlookMonth < 10) {
   outlookMonthText <- paste0("0", outlookMonth)
 } else {
-  as.character(outlookMonth)
+  outlookMonthText <- as.character(outlookMonth)
 }
 
 # PRISM monthly variables, options are "ppt", "tmax", "tmean", "tmin", "vpdmax", and "vpdmin"
