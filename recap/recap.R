@@ -34,7 +34,7 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 if (recapMonth < 10) {
   recapMonthText <- paste0("0", recapMonth)
 } else {
-  as.character(recapMonth)
+  recapMonthText <- as.character(recapMonth)
 }
 
 # PRISM monthly variables, options are "ppt", "tmax", "tmean", "tmin", "vpdmax", and "vpdmin"
