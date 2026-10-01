@@ -28,7 +28,7 @@ azLat <- sort(x = unique(azLatLon$y_center), decreasing = TRUE)
 # PARAMETERS --------------------
 
 
-# recapMonth <- 2 # <MONTH - 1>, as integer
+# recapMonth <- 9 # <MONTH - 1>, as integer
 # recapYear <- 2026 # <YEAR>
 
 if (recapMonth < 10) {
